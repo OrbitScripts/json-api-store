@@ -7,8 +7,8 @@ import { Permission } from './permission.model';
 export class Administrator extends User {
 
     @Attribute({field: 'public'})
-    isPublic: boolean;
+      isPublic: boolean;
 
     @Relationship({resource: Permission, isArray: true})
-    permissions: Permission[] = [];
+      permissions: Permission[] = [];
 }

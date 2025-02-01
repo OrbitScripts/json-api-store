@@ -24,7 +24,7 @@ npm install @orbitsoft/json-api-store
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { JsonApiModule } from '@orbit/json-api-store';
+import { provideJsonApi } from '@orbit/json-api-store';
 
 import { AppComponent } from './app.component';
 
@@ -35,21 +35,20 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    JsonApiModule.forRoot('http://localhost:4200/api')
   ],
-  providers: [],
+  providers: [provideJsonApi('http://localhost:4200/api')],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 ```
 Как видно из примера, при импорте ```JsonApiModule``` в основной модуль вашего приложения
-необходимо использовать метод ```JsonApiModule.forRoot()``` и указать базовый URL вашего JSON API.
+необходимо использовать метод ```provideJsonApi()``` и указать базовый URL вашего JSON API.
 
 При необходимости, ```JsonApiModule``` может быть импортирован и в другие модули вашего приложения.
-Однако при этом не нужно использовать метод ```JsonApiModule.forRoot()```:
+Однако при этом не нужно использовать метод ```provideJsonApi()```:
 ```typescript
 import { NgModule } from '@angular/core';
-import { JsonApiModule } from '@orbit/json-api-store';
+import { provideJsonApi } from '@orbit/json-api-store';
 
 import { ContactsComponent } from './contacts.component';
 
@@ -58,9 +57,8 @@ import { ContactsComponent } from './contacts.component';
     ContactsComponent
   ],
   imports: [
-    JsonApiModule
   ],
-  providers: [],
+  providers: [provideJsonApi('http://localhost:4200/api')],
   bootstrap: [ContactsComponent]
 })
 export class ContactsModule { }

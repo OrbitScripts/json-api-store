@@ -1,60 +1,62 @@
-import { HttpClientModule } from "@angular/common/http";
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { JsonApiModule } from './module';
-import { JsonApiStore, JsonApiUrlBuilder, JsonApiParamsParser, JsonApiStoreAdapter } from './services';
-import { JsonApiResourceSerializer, JsonApiDocumentSerializer } from './serializers';
+import {JsonApiModule} from './module';
+import {JsonApiParamsParser, JsonApiStore, JsonApiStoreAdapter, JsonApiUrlBuilder} from './services';
+import {JsonApiDocumentSerializer, JsonApiResourceSerializer} from './serializers';
+import {provideHttpClientTesting} from "@angular/common/http/testing";
 
 describe('JsonApiModule', () => {
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [
-                HttpClientModule,
-                JsonApiModule.forRoot('http://api.org/v1')
-            ]
-        });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        JsonApiModule.forRoot('http://api.org/v1')
+      ],
+      providers: [
+        provideHttpClientTesting()
+      ]
     });
+  });
 
-    it('should provide resource serializer', () => {
-        const serializer = TestBed.get(JsonApiResourceSerializer);
+  it('should provide resource serializer', () => {
+    const serializer = TestBed.inject(JsonApiResourceSerializer);
 
-        expect(serializer).toBeDefined();
-        expect(serializer instanceof JsonApiResourceSerializer).toBeTruthy();
-    });
+    expect(serializer).toBeDefined();
+    expect(serializer instanceof JsonApiResourceSerializer).toBeTruthy();
+  });
 
-    it('should provide document serializer', () => {
-        const serializer = TestBed.get(JsonApiDocumentSerializer);
+  it('should provide document serializer', () => {
+    const serializer = TestBed.inject(JsonApiDocumentSerializer);
 
-        expect(serializer).toBeDefined();
-        expect(serializer instanceof JsonApiDocumentSerializer).toBeTruthy();
-    });
+    expect(serializer).toBeDefined();
+    expect(serializer instanceof JsonApiDocumentSerializer).toBeTruthy();
+  });
 
-    it('should provide URL builder', () => {
-        const builder = TestBed.get(JsonApiUrlBuilder);
+  it('should provide URL builder', () => {
+    const builder = TestBed.inject(JsonApiUrlBuilder);
 
-        expect(builder).toBeDefined();
-        expect(builder instanceof JsonApiUrlBuilder).toBeTruthy();
-    });
+    expect(builder).toBeDefined();
+    expect(builder instanceof JsonApiUrlBuilder).toBeTruthy();
+  });
 
-    it('should provide parameters parser', () => {
-        const parser = TestBed.get(JsonApiParamsParser);
+  it('should provide parameters parser', () => {
+    const parser = TestBed.inject(JsonApiParamsParser);
 
-        expect(parser).toBeDefined();
-        expect(parser instanceof JsonApiParamsParser).toBeTruthy();
-    });
+    expect(parser).toBeDefined();
+    expect(parser instanceof JsonApiParamsParser).toBeTruthy();
+  });
 
-    it('should provide store adapter', () => {
-        const adapter = TestBed.get(JsonApiStoreAdapter);
+  it('should provide store adapter', () => {
+    const adapter = TestBed.inject(JsonApiStoreAdapter);
 
-        expect(adapter).toBeDefined();
-        expect(adapter instanceof JsonApiStoreAdapter);
-    });
+    expect(adapter).toBeDefined();
+    expect(adapter instanceof JsonApiStoreAdapter);
+  });
 
-    it('should provide store', () => {
-        const store = TestBed.get(JsonApiStore);
+  it('should provide store', () => {
+    const store = TestBed.inject(JsonApiStore);
 
-        expect(store).toBeDefined();
-        expect(store instanceof JsonApiStore).toBeTruthy();
-    });
+    expect(store).toBeDefined();
+    expect(store instanceof JsonApiStore).toBeTruthy();
+  });
 });

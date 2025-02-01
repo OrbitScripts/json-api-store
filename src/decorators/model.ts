@@ -5,41 +5,43 @@ export const METADATA_KEY = 'JsonApiResource';
 export const METADATA_PROPERTY = '__apiMetadata';
 
 export function Model(config?: ModelConfiguration): ClassDecorator {
-    return function (target: Function) {
-        if (!(Reflect as any).hasOwnMetadata(METADATA_KEY, target)) {
-            (Reflect as any).defineMetadata(METADATA_KEY, new ModelMetadata(), target);
-        }
 
-        const metadata: ModelMetadata = (Reflect as any).getOwnMetadata(METADATA_KEY, target);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+  return function (target: Function) {
+    if (!(Reflect as any).hasOwnMetadata(METADATA_KEY, target)) {
+      (Reflect as any).defineMetadata(METADATA_KEY, new ModelMetadata(), target);
+    }
 
-        const parentTarget = Object.getPrototypeOf(target.prototype).constructor;
-        if ((Reflect as any).hasMetadata(METADATA_KEY, parentTarget)) {
-            const parentMetadata: ModelMetadata = (Reflect as any).getMetadata(METADATA_KEY, parentTarget);
+    const metadata: ModelMetadata = (Reflect as any).getOwnMetadata(METADATA_KEY, target);
 
-            metadata.type = parentMetadata.type;
-            metadata
-                .addAttributes(parentMetadata.getAttributes())
-                .addRelationships(parentMetadata.getRelationships());
-        }
+    const parentTarget = Object.getPrototypeOf(target.prototype).constructor;
+    if ((Reflect as any).hasMetadata(METADATA_KEY, parentTarget)) {
+      const parentMetadata: ModelMetadata = (Reflect as any).getMetadata(METADATA_KEY, parentTarget);
 
-        if (config) {
-            if (config.type) {
-                metadata.type = config.type;
-            }
+      metadata.type = parentMetadata.type;
+      metadata
+        .addAttributes(parentMetadata.getAttributes())
+        .addRelationships(parentMetadata.getRelationships());
+    }
 
-            metadata.discField = config.discField;
-            metadata.discMap = config.discMap;
-            metadata.path = config.path;
-        }
+    if (config) {
+      if (config.type) {
+        metadata.type = config.type;
+      }
 
-        if (!metadata.type) {
-            throw Error('JSON API resource type not specified');
-        }
+      metadata.discField = config.discField;
+      metadata.discMap = config.discMap;
+      metadata.path = config.path;
+    }
 
-        (Reflect as any).defineMetadata(METADATA_KEY, metadata, target);
+    if (!metadata.type) {
+      throw Error('JSON API resource type not specified');
+    }
 
-        const modelId = (config && config.id) ? config.id : target.name;
+    (Reflect as any).defineMetadata(METADATA_KEY, metadata, target);
 
-        Registry.register(modelId, <ResourceType<any>>target);
-    };
+    const modelId = (config && config.id) ? config.id : target.name;
+
+    Registry.register(modelId, (target as ResourceType<any>));
+  };
 }

@@ -20,7 +20,7 @@ export interface ModelConfiguration {
     /**
      * Discriminator map
      */
-    discMap?: {[key: string]: string};
+    discMap?: Record<string, string>;
 
     /**
      * Path to resources on server if it doesn't match to resource type

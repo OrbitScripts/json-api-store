@@ -7,14 +7,14 @@ import { Office } from './office.model';
 export class User extends JsonApiResource {
 
     @Attribute()
-    email: string;
+      email: string;
 
     @Attribute()
-    name: string;
+      name: string;
 
     @Relationship({resource: Office})
-    office: Office = null;
+      office: Office = null;
 
     @Relationship({resource: UserRole, isArray: true})
-    roles: UserRole[] = [];
+      roles: UserRole[] = [];
 }

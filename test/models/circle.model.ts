@@ -5,11 +5,11 @@ import { Attribute, Model } from '../../src/decorators';
 export class Circle extends Shape {
 
     @Attribute()
-    radius: number;
+      radius: number;
 
     constructor() {
-        super();
+      super();
 
-        this.shapeType = 'circle';
+      this.shapeType = 'circle';
     }
 }

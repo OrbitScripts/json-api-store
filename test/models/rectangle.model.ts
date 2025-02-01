@@ -5,14 +5,14 @@ import { Shape } from './shape.model';
 export class Rectangle extends Shape {
 
     @Attribute()
-    width: number;
+      width: number;
 
     @Attribute()
-    height: number;
+      height: number;
 
     constructor() {
-        super();
+      super();
 
-        this.shapeType = 'rectangle';
+      this.shapeType = 'rectangle';
     }
 }

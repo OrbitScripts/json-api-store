@@ -4,5 +4,5 @@ import { JsonApiResource, Model, Attribute } from '../../src';
 export class Permission extends JsonApiResource {
 
     @Attribute()
-    name: string;
+      name: string;
 }

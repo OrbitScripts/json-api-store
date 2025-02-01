@@ -9,14 +9,14 @@ import { Permission } from './permission.model';
 export class CorruptedResource extends JsonApiResource {
 
     @Relationship({resource: User})
-    owner: User;
+      owner: User;
 
     @Relationship({resource: Administrator})
-    admin: Administrator;
+      admin: Administrator;
 
     @Relationship({resource: Office, isArray: true})
-    offices: Office[];
+      offices: Office[];
 
     @Relationship({resource: Permission, isArray: true})
-    permissions: Permission[];
+      permissions: Permission[];
 }

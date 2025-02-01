@@ -3,6 +3,6 @@ import { ApiResourceId } from './resource-id';
 export interface ApiResource {
     id?: string;
     type: string;
-    attributes?: {[key: string]: any};
-    relationships?: {[key: string]: {data: ApiResourceId|ApiResourceId[]}};
+    attributes?: Record<string, any>;
+    relationships?: Record<string, {data: ApiResourceId|ApiResourceId[]}>;
 }

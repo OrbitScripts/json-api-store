@@ -5,20 +5,21 @@ import { AdPositionSet } from './ad-position-set.model';
 export class AdPosition extends JsonApiResource {
 
     @Attribute()
-    position: number;
+      position: number;
 
     @Attribute()
-    weight: number;
+      weight: number;
 
     @Attribute()
-    code: string;
+      code: string;
 
     @Attribute()
-    description: string;
+      description: string;
 
     @Attribute()
-    status: string;
+      status: string;
 
     @Relationship({resource: 'com.test.AdSet'})
-    adSet: AdPositionSet;
+    // @ts-ignore
+      adSet: AdPositionSet;
 }

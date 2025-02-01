@@ -6,11 +6,11 @@ import { Office } from './office.model';
 @Model({type: 'custom-fields-resources'})
 export class CustomFieldsResource extends JsonApiResource {
     @Attribute({field: 'name'})
-    title: string;
+      title: string;
 
     @Relationship({resource: User, field: 'user'})
-    customer: User;
+      customer: User;
 
     @Relationship({resource: Office, isArray: true})
-    offices: Office[];
+      offices: Office[];
 }

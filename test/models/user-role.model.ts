@@ -1,23 +1,23 @@
 import { JsonApiResource, Model, Attribute } from '../../src';
 
-import { User } from './user.model';
+import type { User } from './user.model';
 
 @Model({type: 'user-roles'})
 export class UserRole extends JsonApiResource {
 
     @Attribute()
-    role: string;
+      role: string;
 
     @Attribute()
-    status: string = 'activation';
+      status = 'activation';
 
     constructor(user?: User, role?: string) {
-        super();
+      super();
 
-        this.role = role;
+      this.role = role;
 
-        if (user && user.id && role) {
-            this.id = user.id + '-' + role;
-        }
+      if (user && user.id && role) {
+        this.id = user.id + '-' + role;
+      }
     }
 }

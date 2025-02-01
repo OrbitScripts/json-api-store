@@ -4,8 +4,8 @@ import { JsonApiResource, Model, Attribute } from '../../src';
 export class Office extends JsonApiResource {
 
     @Attribute()
-    title: string;
+      title: string;
 
     @Attribute()
-    address: string;
+      address: string;
 }

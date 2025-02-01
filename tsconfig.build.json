@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "lib": ["es2015", "dom"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": ["ES2022", "dom"],
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "declaration": true,
-    "outDir": "../dist"
+    "outDir": "./dist",
   },
   "files": [
-    "../src/index.ts"
+    "./src/index.ts"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": false,

@@ -6,8 +6,8 @@ import { User } from './user.model';
 export class Post extends JsonApiResource {
 
     @Relationship({resource: User})
-    author: User;
+      author: User;
 
     @Relationship({resource: User})
-    moderator: User;
+      moderator: User;
 }

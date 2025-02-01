@@ -1,11 +1,11 @@
 export class SerializationContext {
-    private serialized = new Set();
+  private serialized = new Set();
 
-    isSerialized(item: Object): boolean {
-        return this.serialized.has(item);
-    }
+  isSerialized(item: object): boolean {
+    return this.serialized.has(item);
+  }
 
-    markSerialized(item: Object): void {
-        this.serialized.add(item);
-    }
+  markSerialized(item: object): void {
+    this.serialized.add(item);
+  }
 }

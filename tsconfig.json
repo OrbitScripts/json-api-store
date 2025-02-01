@@ -1,28 +1,48 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "sourceMap": true,
     "declaration": false,
+    "module": "ES2022",
     "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "outDir": "./build",
-    "types": [
-      "jasmine",
-      "node",
-      "reflect-metadata"
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "target": "ES2022",
+    "typeRoots": [
+      "node_modules/@types"
     ],
     "lib": [
-      "es2015",
-      "es6",
-      "es7",
+      "ES2022",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false,
+    "outDir": "./build",
+    "noImplicitAny": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "types": ["jasmine", "node", "reflect-metadata"],
   },
-  "files": [
-    "./src/index.ts"
+  "include": [
+    "src/**/*",
+    "test/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage"
+  ],
+  "files": ["./src/index.ts"],
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true
+  }
 }

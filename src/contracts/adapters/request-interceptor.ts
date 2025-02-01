@@ -9,6 +9,4 @@ export interface RequestParams {
     headers?: HttpHeaders;
 }
 
-export interface RequestInterceptor {
-    (params: RequestParams): void;
-}
+export type RequestInterceptor = (params: RequestParams) => void;
